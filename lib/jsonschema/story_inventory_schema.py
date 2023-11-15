@@ -8,21 +8,6 @@ story_inventory_schema = {
     "sold": {
       "type": "integer"
     },
-    "On fire": {
-      "type": "integer"
-    },
-    "string": {
-      "type": "integer"
-    },
-    "unavailable": {
-      "type": "integer"
-    },
-    "pending": {
-      "type": "integer"
-    },
-    "available": {
-      "type": "integer"
-    },
   },
   "required": [
     "sold",

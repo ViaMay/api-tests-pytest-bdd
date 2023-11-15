@@ -2,15 +2,11 @@
 Feature: Check User[Post] create request
 
   @positive
-  Scenario Outline: Login user (unsuccessful) request
+  Scenario Outline: Login user (successful) request
     When I send "GET" "user/login" request with parameters: "?username=a&password=a"
     Then response status should be "200"
-    And response body should be equal "<error>"
+    And response body should contain "<message>"
 
     Examples:
-      | error                                             |
-      | {"code":405,"type":"unknown","message":"no data"} |
-
-
-##    And response body "name" should be equal "<name>"
-##    Then response body should contain "<error>"
+      | message                                                         |
+      | {"code":200,"type":"unknown","message":"logged in user session: |

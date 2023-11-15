@@ -13,7 +13,7 @@ Feature: Check User[Post] create request
 
 
   @positive
-  Scenario Outline: Create new user (successful) request
+  Scenario Outline: Create new user (successful) request uncorrected parameters
     When I send "POST" "user" request with json parameters: "<parameters>"
     Then response status should be "200"
     And response body schema should be valid by "user_create_schema"

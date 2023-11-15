@@ -7,6 +7,7 @@ from lib.interfaces.interfaces import EXTRA_STRING_TYPES, EXTRA_TYPES, EXTRA_INT
 from jsonschema import validate
 from pytest_bdd import parsers, then, when
 from lib.jsonschema.story_inventory_schema import story_inventory_schema
+from lib.jsonschema.user_create_schema import user_create_schema
 
 
 # Hooks
@@ -47,6 +48,8 @@ def assert_json_schema(schema):
     match schema:
         case 'story_inventory_schema':
             validate(pytest.response.json(), story_inventory_schema)
+        case 'user_create_schema':
+            validate(pytest.response.json(), user_create_schema)
         case _:
             print(f"Sorry, I couldn't understand {schema!r}")
 
@@ -57,19 +60,14 @@ def assert_response_body(key, value):
     assert response_json[key] == value
 
 
-@then(parsers.cfparse('response body should contain "{error_message:String}"', extra_types=EXTRA_STRING_TYPES))
-def response_error(error_message):
-    assert error_message in pytest.response.text
+@then(parsers.cfparse('response body should contain "{message:String}"', extra_types=EXTRA_STRING_TYPES))
+def response_error(message):
+    assert message in pytest.response.text
 
 
 @then(parsers.cfparse('response body should be equal "{body:String}"', extra_types=EXTRA_STRING_TYPES))
 def response_error(body):
     assert pytest.response.text == f'{body}'
-
-
-@then(parsers.cfparse('response status should be "{status:Number}" {text:String}', extra_types=EXTRA_TYPES))
-def assert_status(status, text):
-    assert pytest.response.status_code == status
 
 
 @then(parsers.cfparse('response status should be "{status:Number}"', extra_types=EXTRA_INT_TYPES))
