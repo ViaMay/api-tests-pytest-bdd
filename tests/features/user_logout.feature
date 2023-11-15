@@ -1,7 +1,7 @@
 @api
 Feature: Check User[Post] create request
 
-  @only
+  @positive
   Scenario Outline: Logout user (successful) request
     When I send "GET" "user/logout" request with parameters: "?username=a&password=a"
     Then response status should be "200"
