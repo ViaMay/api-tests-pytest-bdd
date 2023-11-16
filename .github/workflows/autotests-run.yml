@@ -20,14 +20,11 @@ jobs:
         
       - name: Install pipenv
         run: pip3 install pipenv
-        working-directory: ./api_tests
         
       - name: Local modules install
         if: ${{ always() }}
         run: pipenv install
-        working-directory: ./api_tests
         
       - name: Run tests
         if: ${{ always() }}
         run: pipenv run tests_parallel_cucumberjson_report
-        working-directory: ./api_tests
