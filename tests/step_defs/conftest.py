@@ -37,7 +37,7 @@ def request_with_param(method, path, text):
 @given(parsers.parse('I send "{method}" "{path}" request with json parameters:\n{text}'))
 @when(parsers.parse('I send "{method}" "{path}" request with json parameters:\n{text}'))
 def request_with_json_data(method, path, text):
-    params_json = json.loads(text)
+    params_json = json.loads(text.strip('"""'))
     pytest.response = ApiRequest(method=method, path=path).request(params_json=params_json)
     return pytest.response
 
@@ -88,14 +88,17 @@ def response_text_contain(message):
     assert message in pytest.response.text
 
 
-@then(parsers.cfparse('response body should be equal: "{text}"',
-                      extra_types=I_EXTRA_STRING_TYPES))
 @then(parsers.parse('response body should be equal:\n{text}'))
 def response_text_equal(text):
-    json_data = json.loads(text)
+    json_data = json.loads(text.strip('"""'))
     json_response = json.loads(pytest.response.text)
     del json_response['id']
     assert json_response == json_data
+
+
+@then(parsers.cfparse('response body should be equal "{body:String}"', extra_types=I_EXTRA_STRING_TYPES))
+def response_text_equal(body):
+    assert pytest.response.text == f'{body}'
 
 
 @then(parsers.cfparse('response status should be "{status:Number}"', extra_types=I_EXTRA_INT_TYPES))
@@ -107,6 +110,6 @@ def assert_status(status):
 
 @given(parsers.parse('I create data with random json parameters:\n{text}'))
 def data_create(text):
-    params_json = json.loads(text)
+    params_json = json.loads(text.strip('"""'))
     pytest.json_data = replace_random_values(params_json)
     return pytest.json_data

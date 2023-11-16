@@ -46,3 +46,15 @@ Feature: Check User[PUT] create request
        }
       """
 
+
+  @negative
+  Scenario Outline: PUT user by username (unsuccessful) request
+    Given I send "POST" "user" request with json parameters: "{ "username": "<username>" }"
+    When I send "PUT" "user/<username>" request
+    Then response status should be "405"
+    And response body should be equal "<error>"
+    And response body schema should be valid by "error_default_schema"
+
+    Examples:
+      | username            | error                                             |
+      | username_test_error | {"code":405,"type":"unknown","message":"no data"} |
