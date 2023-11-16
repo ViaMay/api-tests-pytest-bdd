@@ -14,7 +14,6 @@ Feature: Check Store_order[POST] request
         "complete": true
         }
        """
-    And I send "POST" "user" request with created json data
     Then response status should be "200"
     And response body should be equal:
       """
