@@ -34,6 +34,7 @@ def request_with_param(method, path, text):
                        extra_types=I_EXTRA_STRING_TYPES))
 @when(parsers.cfparse('I send "{method}" "{path}" request with json parameters: "{text}"',
                       extra_types=I_EXTRA_STRING_TYPES))
+@given(parsers.parse('I send "{method}" "{path}" request with json parameters:\n{text}'))
 @when(parsers.parse('I send "{method}" "{path}" request with json parameters:\n{text}'))
 def request_with_json_data(method, path, text):
     params_json = json.loads(text)

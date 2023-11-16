@@ -1,5 +1,5 @@
 @api
-Feature: Check User[Post] create request
+Feature: Check User_login[GET] create request
 
   @positive
   Scenario Outline: Login user (successful) request

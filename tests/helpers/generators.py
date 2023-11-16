@@ -11,7 +11,7 @@ def replace_random_values(data):
             case 'RANDOM_PHONE':
                 data[key] = "+7" + str(random.randint(1000000000, 9999999999))
             case "RANDOM_EMAIL":
-                data[key] = ''.join(random.choices(string.ascii_letters + string.digits, k=8)) + "@test.ru"
+                data[key] = ''.join(random.choices(string.ascii_letters + string.digits, k=8)) + "@test.com"
             case "RANDOM_USERNAME":
                 data[key] = 'username_' + ''.join(random.choices(string.ascii_letters + string.digits, k=8))
     return json.dumps(data)

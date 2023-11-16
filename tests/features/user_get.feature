@@ -1,5 +1,5 @@
 @api
-Feature: Check User[Post] create request
+Feature: Check User[GET] create request
 
   @positive
   Scenario: Get user by username (successful) request with created username
