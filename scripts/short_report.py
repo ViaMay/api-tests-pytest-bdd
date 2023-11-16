@@ -1,5 +1,4 @@
 import os
-import requests
 import json
 
 SLACK_REPORT_SECRET = str(os.environ.get("SLACK_REPORT_SECRET"))
@@ -15,7 +14,6 @@ _color = ''
 _passing = 0
 _failing = 0
 _count = 0
-BASE_URL = "https://hooks.slack.com/services/" + SLACK_REPORT_SECRET
 link_repository = 'https://github.com/' + GITHUB_REPOSITORY + '/pull/' + GITHUB_REF_NAME
 link_action = 'https://github.com/' + GITHUB_REPOSITORY + '/actions/runs/' + GITHUB_RUN_ID
 header_repository =\
@@ -67,17 +65,3 @@ header = header_repository + header_action
 print(header)
 print(text)
 
-body = {
-    "channel": "#...-api-tests-reports",
-    "username": "webhookbot",
-    "text": header,
-    "attachments": [
-        {
-            "color": _color,
-            "text": text
-        }
-    ],
-    "icon_emoji": ":ghost:"
-}
-response = requests.post(BASE_URL, json=body)
-print(response)

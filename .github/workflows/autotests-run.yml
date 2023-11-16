@@ -28,3 +28,7 @@ jobs:
       - name: Run tests
         if: ${{ always() }}
         run: pipenv run tests_parallel_cucumberjson_report
+
+      - name: Print report
+        if: ${{ always() }}
+        run: pipenv run short_report
