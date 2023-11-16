@@ -9,6 +9,7 @@ from pytest_bdd import parsers, then, when, given
 
 from lib.jsonschema.error_default_schema import error_default_schema
 from lib.jsonschema.story_inventory_schema import story_inventory_schema
+from lib.jsonschema.story_order_post_schema import story_order_post_schema
 from lib.jsonschema.successful_default_schema import successful_default_schema
 from lib.jsonschema.user_get_schema import user_get_schema
 from tests.helpers.generators import replace_random_values
@@ -68,6 +69,8 @@ def assert_json_schema(schema):
             validate(pytest.response.json(), story_inventory_schema)
         case 'user_get_schema':
             validate(pytest.response.json(), user_get_schema)
+        case 'story_order_post_schema':
+            validate(pytest.response.json(), story_order_post_schema)
         case 'successful_default_schema':
             validate(pytest.response.json(), successful_default_schema)
         case 'error_default_schema':

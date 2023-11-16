@@ -51,7 +51,7 @@ Feature: Check User[GET] request
 
 
   @negative
-  Scenario Outline: Get  user by username (unsuccessful) request
+  Scenario Outline: Get user by username (unsuccessful) request
     When I send "GET" "user/!@#dfef345345" request
     Then response status should be "404"
     And response body should be equal "<error>"

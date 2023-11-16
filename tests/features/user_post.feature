@@ -2,7 +2,7 @@
 Feature: Check User[POST] request
 
   @positive
-  Scenario: Create new user (successful) request
+  Scenario: Post new user (successful) request
     When I send "POST" "user" request with json parameters:
       """
       {
@@ -21,7 +21,7 @@ Feature: Check User[POST] request
 
 
   @positive
-  Scenario Outline: Create new user (successful) request uncorrected parameters
+  Scenario Outline: Post new user (successful) request uncorrected parameters
     When I send "POST" "user" request with json parameters: "<parameters>"
     Then response status should be "200"
     And response body schema should be valid by "successful_default_schema"
@@ -34,7 +34,7 @@ Feature: Check User[POST] request
 
 
   @negative
-  Scenario Outline: Create new user (unsuccessful) request
+  Scenario Outline: Post new user (unsuccessful) request
     When I send "POST" "user" request
     Then response status should be "405"
     And response body should be equal "<error>"
