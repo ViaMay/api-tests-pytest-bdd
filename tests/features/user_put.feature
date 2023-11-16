@@ -1,7 +1,7 @@
 @api
-Feature: Check User[PUT] create request
+Feature: Check User[PUT] request
 
-  @only
+  @positive
   Scenario: PUT user by username (successful) request with created username
     Given I send "POST" "user" request with json parameters:
       """

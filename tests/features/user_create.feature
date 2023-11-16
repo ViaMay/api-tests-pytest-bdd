@@ -1,5 +1,5 @@
 @api
-Feature: Check User[POST] create request
+Feature: Check User[POST] request
 
   @positive
   Scenario: Create new user (successful) request

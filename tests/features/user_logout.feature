@@ -1,5 +1,5 @@
 @api
-Feature: Check User_logout[GET] create request
+Feature: Check User_logout[GET] request
 
   @positive
   Scenario Outline: Logout user (successful) request

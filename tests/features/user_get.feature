@@ -1,5 +1,5 @@
 @api
-Feature: Check User[GET] create request
+Feature: Check User[GET] request
 
   @positive
   Scenario: Get user by username (successful) request with created username
@@ -39,7 +39,7 @@ Feature: Check User[GET] create request
       | a        |
 
   @negative
-  Scenario Outline: Get new user (unsuccessful) request
+  Scenario Outline: Get user (unsuccessful) request
     When I send "GET" "user/" request
     Then response status should be "405"
     And response body should be equal "<error>"
@@ -51,7 +51,7 @@ Feature: Check User[GET] create request
 
 
   @negative
-  Scenario Outline: Get new user (unsuccessful) request
+  Scenario Outline: Get  user by username (unsuccessful) request
     When I send "GET" "user/!@#dfef345345" request
     Then response status should be "404"
     And response body should be equal "<error>"
