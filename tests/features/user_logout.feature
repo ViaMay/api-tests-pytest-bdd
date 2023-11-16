@@ -6,6 +6,7 @@ Feature: Check User[Post] create request
     When I send "GET" "user/logout" request with parameters: "?username=a&password=a"
     Then response status should be "200"
     And response body should contain "<message>"
+    And response body schema should be valid by "successful_default_schema"
 
     Examples:
       | message                                     |

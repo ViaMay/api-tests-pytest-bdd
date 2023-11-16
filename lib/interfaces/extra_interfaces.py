@@ -1,16 +1,16 @@
-EXTRA_INT_TYPES = {
+I_EXTRA_INT_TYPES = {
     'Number': int,
 }
 
-EXTRA_STRING_TYPES = {
+I_EXTRA_STRING_TYPES = {
     'String': str,
 }
 
-EXTRA_STRINGS_TYPES = {
+I_EXTRA_STRINGS_TYPES = {
     'String': str,
 }
 
-EXTRA_TYPES = {
+I_EXTRA_TYPES = {
     'Number': int,
     'String': str,
 }

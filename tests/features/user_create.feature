@@ -17,14 +17,14 @@ Feature: Check User[Post] create request
        }
       """
     Then response status should be "200"
-    And response body schema should be valid by "user_create_schema"
+    And response body schema should be valid by "successful_default_schema"
 
 
   @positive
   Scenario Outline: Create new user (successful) request uncorrected parameters
     When I send "POST" "user" request with json parameters: "<parameters>"
     Then response status should be "200"
-    And response body schema should be valid by "user_create_schema"
+    And response body schema should be valid by "successful_default_schema"
 
     Examples:
       | parameters          |
@@ -38,6 +38,7 @@ Feature: Check User[Post] create request
     When I send "POST" "user" request
     Then response status should be "405"
     And response body should be equal "<error>"
+    And response body schema should be valid by "error_default_schema"
 
     Examples:
       | error                                             |

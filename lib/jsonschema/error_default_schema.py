@@ -1,8 +1,8 @@
 """
-This module contains user create jsonschema
+This module contains error default jsonschema
 """
 
-user_create_schema = {
+error_default_schema = {
   "type": "object",
   "properties": {
     "code": {
@@ -18,6 +18,5 @@ user_create_schema = {
   "required": [
     "code",
     "type",
-    "message"
   ]
 }
