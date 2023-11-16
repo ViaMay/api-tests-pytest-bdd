@@ -42,6 +42,7 @@ def request_with_json_data(method, path, text):
     return pytest.response
 
 
+@then(parsers.parse('I send "{method}" "{path}" request', extra_types=I_EXTRA_STRING_TYPES))
 @when(parsers.parse('I send "{method}" "{path}" request', extra_types=I_EXTRA_STRING_TYPES))
 def request(method, path):
     pytest.response = ApiRequest(method=method, path=path).request()
@@ -87,9 +88,14 @@ def response_text_contain(message):
     assert message in pytest.response.text
 
 
-@then(parsers.cfparse('response body should be equal "{body:String}"', extra_types=I_EXTRA_STRING_TYPES))
-def response_text_equal(body):
-    assert pytest.response.text == f'{body}'
+@then(parsers.cfparse('response body should be equal: "{text}"',
+                      extra_types=I_EXTRA_STRING_TYPES))
+@then(parsers.parse('response body should be equal:\n{text}'))
+def response_text_equal(text):
+    json_data = json.loads(text)
+    json_response = json.loads(pytest.response.text)
+    del json_response['id']
+    assert json_response == json_data
 
 
 @then(parsers.cfparse('response status should be "{status:Number}"', extra_types=I_EXTRA_INT_TYPES))

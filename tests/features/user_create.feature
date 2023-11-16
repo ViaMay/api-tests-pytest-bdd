@@ -1,5 +1,5 @@
 @api
-Feature: Check User[Post] create request
+Feature: Check User[POST] create request
 
   @positive
   Scenario: Create new user (successful) request
@@ -10,7 +10,7 @@ Feature: Check User[Post] create request
         "username": "username_test",
         "firstName": "firstName_test",
         "lastName": "lastName_test",
-        "email": "email@test.ru",
+        "email": "email@test.com",
         "password": "password_test123",
         "phone": "+7111111111",
         "userStatus": 0
