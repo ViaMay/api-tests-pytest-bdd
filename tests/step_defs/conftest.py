@@ -79,8 +79,7 @@ def assert_json_schema(schema):
             print(f"Sorry, I couldn't understand {schema!r}")
 
 
-@then(
-    parsers.cfparse('response body "{key:String}" should be equal "{value:String}"', extra_types=I_EXTRA_STRING_TYPES))
+@then(parsers.parse('response body "{key}" should be equal "{value}"'))
 def assert_response_body(key, value):
     response_json = json.loads(pytest.response.text)
     assert response_json[key] == value
@@ -89,6 +88,12 @@ def assert_response_body(key, value):
 @then(parsers.cfparse('response body should contain "{message:String}"', extra_types=I_EXTRA_STRING_TYPES))
 def response_text_contain(message):
     assert message in pytest.response.text
+
+
+@then(parsers.cfparse('response body should contain:\n{text}'))
+def response_text_contain(text):
+    text = text.strip('"""').strip()
+    assert text in pytest.response.text
 
 
 @then(parsers.parse('response body should be equal:\n{text}'))

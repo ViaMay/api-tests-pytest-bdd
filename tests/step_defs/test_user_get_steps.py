@@ -8,7 +8,7 @@ from tests.step_defs.conftest import request
 scenarios('../features/user_get.feature')
 
 
-@when(parsers.parse('I send "GET" "user/" request with created "username"'))
+@when('I send "GET" "user/" request with created "username"')
 def send_get_request():
     params_json = json.loads(pytest.json_data)
     pytest.response = request("GET", "user/" + params_json['username'])
